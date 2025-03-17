@@ -1,23 +1,17 @@
 import React from "react";
-import { BrowserRouter} from 'react-router-dom';
-import Layout from "./layout/Layout";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+import Dashboard from "./pages/Dashboard";
 import "admin-lte/dist/css/adminlte.min.css"; 
 import "./index.css"; 
-
-const Dashboard: React.FC = () => {
-  return (
-    <div className="p-6">
-      <h2 className="text-xl font-semibold text-maroon">Welcome to the Admin Dashboard</h2>
-      <p className="text-gray-600">Manage your site from here.</p>
-    </div>
-  );
-};
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Layout>
-        <Dashboard />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+        </Routes>
       </Layout>
     </BrowserRouter>
   );
