@@ -1,10 +1,16 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class", // Enable class-based dark mode
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        maroon: "#800000",
+        accent: "#CE4257",    // Reddish Pink
+        highlight: "#FF7F51", // Coral Orange
+        soft: "#FF9B54",      // Warm Orange
+
+        maroon: "#4F000B",
+        darkred: "#720026",
         white: "#FFFFFF",
         black: "#000000",
         gray: {

@@ -1,38 +1,54 @@
-import React from "react";
-import { FaBell, FaUserCircle } from "react-icons/fa";
-import { LogOutIcon } from "lucide-react"; // Import LogOutIcon from Lucide
-import { Link } from "react-router-dom";
-import Dropdown from "../ui/DropDown";
-// import Button from "../ui/Button";
+import type React from "react"
+import { FaBell, FaUserCircle } from "react-icons/fa"
+import { LogOutIcon, MenuIcon } from "lucide-react"
+import { Link } from "react-router-dom"
+import Dropdown from "../ui/DropDown"
+import ThemeToggle from "../ui/ThemeToggle"
 
-const TopNav: React.FC = () => {
+interface TopNavProps {
+  theme: string
+  setTheme: (theme: string) => void
+  isSidebarOpen: boolean
+  setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const TopNav: React.FC<TopNavProps> = ({ theme, setTheme, isSidebarOpen, setIsSidebarOpen }) => {
   return (
-    <header className="bg-maroon text-white p-4 flex justify-between items-center shadow-md">
-      <h1 className="text-xl font-bold">Welcome, Admin</h1>
+    <header className="p-4 flex justify-between items-center shadow-md">
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          className="flex items-center justify-center w-10 h-10 hover:bg-gray-200 dark:hover:bg-gray-800 transition rounded-lg"
+        >
+          <MenuIcon size={24} />
+        </button>
+        <h1 className="text-xl font-bold">Welcome, Admin</h1>
+      </div>
 
       <div className="flex items-center space-x-6">
-        {/* Notifications Dropdown */}
+        <ThemeToggle theme={theme} setTheme={setTheme} />
+
         <Dropdown buttonContent={<FaBell className="text-2xl cursor-pointer" />}>
-          <div className="p-3 border-b border-gray-200 flex justify-between">
-            <h3 className="text-sm font-semibold text-gray-800">Notifications</h3>
+          <div className="p-3 border-b border-gray-200 dark:border-gray-700">
+            <h3 className="text-sm font-semibold">Notifications</h3>
           </div>
           <ul className="max-h-64 overflow-y-auto">
-            <li className="px-4 py-3 text-center text-gray-700">No new notifications</li>
+            <li className="px-4 py-3 text-center">No new notifications</li>
           </ul>
         </Dropdown>
 
-        {/* Profile Dropdown */}
         <Dropdown buttonContent={<FaUserCircle className="text-2xl cursor-pointer" />}>
           <ul>
             <li>
-              <Link to="/personal-information" 
-              className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+              <Link to="/personal-information" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
                 Show Profile
               </Link>
             </li>
             <li>
-              <Link to ="/log-out"
-               className="w-full px-4 flex items-center space-x-2  hover:bg-gray-200 text-gray-800">
+              <Link
+                to="/log-out"
+                className="w-full px-4 flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
                 <LogOutIcon size={16} /> <span>Logout</span>
               </Link>
             </li>
@@ -40,7 +56,8 @@ const TopNav: React.FC = () => {
         </Dropdown>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default TopNav;
+export default TopNav
+

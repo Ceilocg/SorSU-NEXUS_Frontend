@@ -1,21 +1,20 @@
 import React from "react";
 
-interface ButtonProps {
-  children: React.ReactNode;
-  onClick?: () => void;
-  className?: string;
-  variant?: "primary" | "secondary" | "danger";
+interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "maroon" | "darkred" | "accent" | "highlight" | "soft" | "outline" | "ghost" | "link";
   size?: "sm" | "md" | "lg";
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<CustomButtonProps> = ({
   children,
-  onClick,
-  className = "",
-  variant = "primary",
+  variant = "maroon",
   size = "md",
+  className = "",
+  ...props
 }) => {
-  const baseStyles = "rounded-lg font-medium transition-all duration-200 focus:outline-none";
+  const baseStyles =
+    "inline-flex items-center justify-center rounded-md font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50";
+
   const sizeStyles = {
     sm: "px-3 py-1 text-sm",
     md: "px-4 py-2 text-base",
@@ -23,15 +22,20 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const variantStyles = {
-    primary: "bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700",
-    secondary: "bg-gray-500 text-white hover:bg-gray-600 active:bg-gray-700",
-    danger: "bg-red-500 text-white hover:bg-red-600 active:bg-red-700",
+    maroon: "bg-maroon text-white hover:bg-maroon/90",
+    darkred: "bg-darkred text-white hover:bg-darkred/90",
+    accent: "bg-accent text-white hover:bg-accent/90",
+    highlight: "bg-highlight text-white hover:bg-highlight/90",
+    soft: "bg-soft text-black hover:bg-soft/90",
+    outline: "border border-gray-300 bg-transparent hover:bg-gray-100",
+    ghost: "hover:bg-gray-100",
+    link: "text-maroon underline hover:text-darkred",
   };
 
   return (
     <button
-      onClick={onClick}
       className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
+      {...props}
     >
       {children}
     </button>
