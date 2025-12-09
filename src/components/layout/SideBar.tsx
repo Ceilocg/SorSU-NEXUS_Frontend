@@ -1,6 +1,6 @@
 import type React from "react"
 import { Link, useLocation } from "react-router-dom"
-import { HomeIcon, SettingsIcon } from "lucide-react"
+import { HomeIcon, SettingsIcon, UserIcon } from "lucide-react"
 
 interface SidebarProps {
   isOpen: boolean
@@ -13,6 +13,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   const menuItems = [
     { path: "/", label: "Dashboard", icon: <HomeIcon size={24} /> },
     { path: "/settings", label: "Settings", icon: <SettingsIcon size={24} /> },
+    { path: "/user", label: "User Management", icon: <UserIcon size={24} />},
+
   ]
 
   if (!isOpen) {

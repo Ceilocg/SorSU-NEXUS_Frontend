@@ -5,6 +5,8 @@ import { AuthProvider } from "./context/AutContext";
 import Home from "./pages/Home";
 import "admin-lte/dist/css/adminlte.min.css"; 
 import "./index.css"; 
+import Settings from "./pages/Settings";
+import UserManagement from "./pages/Usermanagement";
 
 const App: React.FC = () => {
   const [theme] = useState(localStorage.getItem("theme") || "light");
@@ -24,6 +26,8 @@ const App: React.FC = () => {
           <Layout>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path ="user" element={<UserManagement />} />
             </Routes>
           </Layout>
         </div>
